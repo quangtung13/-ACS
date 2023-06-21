@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ĐACS.Models.SANPHAM>
+@{
+    ViewBag.Title = "DanhMucSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="danhmuc">
+    @Html.Action("Danhmuc", "Danhmuc")
+</div>
+<div class="text-center container py-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-12 mb-4">
+                <div class="card">
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                         data-mdb-ripple-color="light">
+                        <img src="@item.HINH"
+                             class="w-100" />
+                        <a href=" ">
+                            <div class="mask">
+                                <div class="d-flex justify-content-start align-items-end h-100">
+                                    <h5><span class="badge bg-primary ms-2">New</span></h5>
+                                </div>
+                            </div>
+                            <div class="hover-overlay">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <a href="" class="text-reset">
+                            <h5 class="card-title mb-3">@item.TENSP</h5>
+                        </a>
+                        <a href="" class="text-reset">
+                            <p><strong>SL: </strong>@item.SLT</p>
+                        </a>
+                        <h6 class="mb-3"> <strong>Giá: </strong>@item.GIA</h6>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center pb-2 mb-1">
+                        <a class="btn btn-primary" onclick="addToCart(@item.MASP)">Đặt Mua</a>
+                        @Html.ActionLink("Thông tin", "ThongTinSP", "Store", new { id = item.MASP }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    function addToCart(id) {
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("ThemGioHang", "GioHang")",
+            data: { id: id },
+            success: function (result) {
+                getGioHangPartial();
+                if (result.success == true) {
+                    {
+                        alert(result.message);
+                    }
+                }
+            }
+            });
+    }
+</script>

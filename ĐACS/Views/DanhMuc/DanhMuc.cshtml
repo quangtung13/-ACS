@@ -1,0 +1,14 @@
+﻿
+@model IEnumerable<ĐACS.Models.LOAISP>
+
+
+
+
+<div class="text-center">
+    @foreach (var item in Model)
+    {
+        <button class="btn btn-outline-primary">@Html.ActionLink(item.TENLOAI, "DanhMucSP", new { id = item.MALOAI })</button>
+    }
+</div>
+
+

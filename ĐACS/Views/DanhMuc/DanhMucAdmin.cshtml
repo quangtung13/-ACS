@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<ĐACS.Models.LOAISP>
+@{
+    ViewBag.Title = "DanhMuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <tr class="text-center">
+        <th>@Html.ActionLink("Sản phẩm", "Index", "Admin", new { area = "" }, new { @class = "nav-link" }) </th>
+        <th>@Html.ActionLink("Sản phẩm", "DanhMucAdmin", "DanhMuc", new { area = "" }, new { @class = "nav-link" })</th>
+        <th>@Html.ActionLink("Đơn Hàng", "XemDonHang", "DonHang", new { area = "" }, new { @class = "nav-link" })</th>
+
+    </tr>
+</table>
+<h2 class="text-center">Phòng <br />@Html.ActionLink("Thêm danh mục", "ThemDM", new { area = "" }, new { @class = "btn btn-primary" })</h2>
+
+
+
+<table class="table">
+    <tr class="text-center">
+        <th> Mã loại sản phẩm </th>
+        <th> Tên loại sản phẩm</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            @*<td>@Html.DisplayFor(modelItem => item.MALOAI)</td>*@
+            <td>@String.Format("{0}",item.MALOAI)</td>
+            <td>@Html.ActionLink(item.TENLOAI, "DanhMucSP", new { id = item.MALOAI })</td>
+            <td>
+                @Html.ActionLink(" ", "XoaDM", new { id = item.MALOAI }, new { @class = "bi bi-trash" })
+            </td>
+        </tr>
+    }
+</table>

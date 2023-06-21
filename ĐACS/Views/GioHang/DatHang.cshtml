@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ĐACS.Models.GioHang>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="h-100 gradient-custom">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center my-4">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Sản Phẩm</h5>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var item in Model)
+                        {
+                            <div class="row">
+                                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                        <img src="@item.HINH"
+                                             class="w-100" alt="Blue Jeans Jacket" />
+                                        <a href="#!">
+                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                    <p><strong>@Html.DisplayFor(modelItem => item.TENSP)</strong></p>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                    <div class="d-flex mb-4" style="max-width: 300px">
+                                        <span><strong>Số lượng: </strong>@item.isoluong</span>
+                                    </div>
+                                    <p class="text-start text-md-center">
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.dthanhtien) VND
+                                    </p>
+                                </div>
+
+                            </div>
+                        }
+
+                        <hr class="my-4" />
+                        <span> <strong>Tổng số sản phẩm:</strong> @ViewBag.Tongsoluongsanpham &emsp; &emsp;</span>
+                        <span> <strong>Tổng số sản phẩm:</strong> @ViewBag.Tongsoluong  &emsp; &emsp;</span>
+                        <span><strong>Tổng số tiền : @String.Format("{0:0,0}", ViewBag.Tongtien) VND</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Thông tin khách hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <table align="center">
+                            @using ĐACS.Models
+                            @{
+                                NGUOIDUNG nd = (NGUOIDUNG)Session["TENDANGNHAP"];
+                            }
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true)
+                                <tr style="height: 40px">
+                                    <td>Họ tên khách hàng: </td>
+                                    <td style="font-weight:bold"> @nd.TENND</td>
+                                </tr>
+                                <tr style="height: 40px">
+                                    <td>Email: </td>
+                                    <td style="font-weight:bold">@nd.MAIL</td>
+                                </tr>
+                                <tr style="height: 40px">
+                                    <td>Địa chỉ: </td>
+                                    <td style="font-weight:bold">@nd.DIACHI</td>
+                                </tr>
+                                <tr style="height: 40px">
+                                    <td>Điện thoại: </td>
+                                    <td style="font-weight:bold">@nd.SDT</td>
+                                </tr>
+                                <tr style="height: 40px">
+                                    <td>Ngày đặt: </td>
+                                    <td style="font-weight:bold">@DateTime.Now.ToShortDateString()</td>
+                                </tr>
+                                <tr style="height: 40px">
+                                    <td>Ngày giao: </td>
+                                    <td style="font-weight:bold">@DateTime.Now.AddDays(3).ToShortDateString()</td>
+                                </tr>
+                                <tr style="height: 40px">
+                                    <td style="font-weight:bold">
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px">
+                                    <td></td>
+                                    <td style="font-weight:bold">
+                                        <button onclick="ThongbaoDatHang()" type="submit" value="" class="btn btn-primary  btn-lg"> Xác nhận</button>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <h6>Phương thức thanh toán</h6>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Thanh toán nơi nhận hàng.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

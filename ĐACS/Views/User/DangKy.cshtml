@@ -1,0 +1,110 @@
+﻿@model ĐACS.Models.NGUOIDUNG
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section class="vh-200">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Đăng ký</p>
+
+                                    <form class="mx-1 mx-md-4">
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class=" flex-fill mb-0">
+                                                @Html.EditorFor(model => model.TENND, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.TENND, "", new { @class = "text-danger" })
+                                                <label class="form-label" for="form3Example1c">Họ và Tên</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class=" flex-fill mb-0">
+                                                @Html.EditorFor(model => model.TENDANGNHAP, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.TENDANGNHAP, "", new { @class = "text-danger" })
+                                                <label class="form-label" for="form3Example3c">Tên đăng nhập</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div class=" flex-fill mb-0">
+                                                @Html.EditorFor(model => model.MAIL, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.MAIL, "", new { @class = "text-danger" })
+                                                <label class="form-label" for="form3Example4c">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <div class=" flex-fill mb-0">
+                                                @Html.EditorFor(model => model.MATKHAU, new { htmlAttributes = new { type = "Password", @class = "form-control" } })
+                                                @ViewData["matkhau"]
+                                                @Html.ValidationMessageFor(model => model.MATKHAU, "", new { @class = "text-danger" })
+                                                <label class="form-label" for="form3Example3c">Mật Khẩu</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <div class=" flex-fill mb-0">
+                                                <input class="form-control text-box single-line input-validation-error" data-val="true" data-val-required="Phải nhập mật khẩu xác nhận!" id="MatKhauXacNhan" name="MatKhauXacNhan" type="password" value="" aria- describedby="MatKhauXacNhan-error" aria-invalid="true">
+                                                @ViewData["NhapMKXN"]
+                                                @ViewData["MatKhauGiongNhau"]
+                                                <label class="form-label" for="form3Example4c">Mật khẩu xác nhận</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="	fas fa-location-arrow fa-lg me-3 fa-fw"></i>
+                                            <div class=" flex-fill mb-0">
+                                                @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                                                <label class="form-label" for="form3Example4cd">Địa Chỉ</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-phone-alt fa-lg me-3 fa-fw"></i>
+                                            <div class=" flex-fill mb-0">
+                                                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                                <label class="form-label" for="form3Example4cd">Số Điện Thoại</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-birthday-cake fa-lg me-3 fa-fw"></i>
+                                            <div class=" flex-fill mb-0">
+                                                @Html.EditorFor(model => model.NGAYSINH, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.NGAYSINH, "", new { @class = "text-danger" })
+                                                <label class="form-label" for="form3Example4cd">Ngày Sinh</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <input type="submit" value="Đăng ký" class="btn btn-primary btn-lg" />                                          
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                    <img src="~/Content/images/pexels-emre-can-acer-2079249.jpg" class="img-fluid" alt="Sample image"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

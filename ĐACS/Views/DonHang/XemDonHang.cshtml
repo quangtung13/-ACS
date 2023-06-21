@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ĐACS.Models.DONHANG>
+
+@{
+    ViewBag.Title = "XemDonHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table">
+    <tr class="text-center">
+        <th>@Html.ActionLink("Sản phẩm", "Index", "Admin", new { area = "" }, new { @class = "nav-link" }) </th>
+        <th>@Html.ActionLink("Danh Mục", "DanhMucAdmin", "DanhMuc", new { area = "" }, new { @class = "nav-link" })</th>
+        <th>@Html.ActionLink("Đơn Hàng", "XemDonHang", "DonHang", new { area = "" }, new { @class = "nav-link" })</th>
+
+    </tr>
+</table>
+<h2 class="text-center">Xem đơn hàng</h2>
+<table class="table">
+    <tr class="text-center">
+        <th> Mã Đơn Hàng</th>
+        <th> Ngày đặt hàng</th>
+        <th> Ngày Giao Hàng</th>
+        <th> Mã Khách Hàng</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            @*<td>@Html.DisplayFor(modelItem => item.MADH)</td>*@
+            <td>@String.Format("{0}", item.MADH)</td>
+            <td>@Html.DisplayFor(modelItem => item.THOIGIANDAT)</td>
+            <td>@Html.DisplayFor(modelItem => item.THOIGIANGIAODUKIEN)</td>
+            <td>@Html.DisplayFor(modelItem => item.TENDANGNHAP)</td>
+            <td>
+                @* @Html.ActionLink("Huỷ", "HuyDonHang", "DonHang", new { id = item.madon }, new { @class = "btn btn-danger" })*@
+                @Html.ActionLink("Chi Tiết", "XemChiTietDonHang", "DonHang", new { id = item.MADH }, new { @class = "btn btn-info" })
+            </td>
+        </tr>
+    }
+</table>
