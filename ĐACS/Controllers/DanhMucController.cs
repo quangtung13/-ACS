@@ -18,8 +18,8 @@ namespace ĐACS.Controllers
             return PartialView(listdm);
         }
         public ActionResult DanhMucAdmin()
-        {
-            var listdm = from dm in data.LOAISP select dm;
+        {          
+            var listdm = (from dm in data.LOAISP select dm).OrderBy(m => m.MALOAI).ToList();
             return View(listdm);
         }
         public ActionResult DanhMucSP(int id)
@@ -35,15 +35,15 @@ namespace ĐACS.Controllers
         }
         [HttpPost]
         public ActionResult ThemDM(FormCollection collection, LOAISP dm)
-        {
-
-            var S_TenDM = collection["TenDM"];
+        {          
+            var S_TenDM = collection["TENLOAI"];
             if (string.IsNullOrEmpty(S_TenDM))
             {
                 ViewData["Error"] = "Don't empty!";
             }
+          
             else
-            {
+            {              
                 dm.TENLOAI = S_TenDM.ToString();
                 data.LOAISP.Add(dm);
                 data.SaveChanges();

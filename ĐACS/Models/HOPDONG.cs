@@ -14,14 +14,22 @@ namespace ĐACS.Models
     
     public partial class HOPDONG
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HOPDONG()
+        {
+            this.HDTTHOPDONG = new HashSet<HDTTHOPDONG>();
+        }
+    
         public string MAHOPDONG { get; set; }
         public Nullable<System.DateTime> THOIGIANLAP { get; set; }
         public string ND { get; set; }
-        public string CHIPHIDULOAISP { get; set; }
+        public string CHIPHIDUPHONG { get; set; }
         public string TENDANGNHAP { get; set; }
         public string TENTAIKHOAN { get; set; }
         public decimal MALOAIHD { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HDTTHOPDONG> HDTTHOPDONG { get; set; }
         public virtual NGUOIDUNG NGUOIDUNG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
         public virtual LOAIHD LOAIHD { get; set; }

@@ -7,7 +7,7 @@
 
 <table class="table">
     <tr>
-        
+
         <th>Tên sản phẩm</th>
         <th>Giá</th>
         <th>Mô tả</th>
@@ -17,19 +17,23 @@
     </tr>
     <tr>
         <td>@Html.DisplayFor(model => model.TENSP)</td>
-        <td>@Html.DisplayFor(model => model.GIA)</td>
+        @*<td>@Html.DisplayFor(model => model.GIA)</td>*@
+        <td>@String.Format("{0:0,0}",Model.GIA) VND</td>
         <td>@Html.DisplayFor(model => model.MOTA)</td>
         <td><img src="@Html.DisplayFor(model => model.HINH)" width="180" /></td>
-         <td>@Html.DisplayFor(model => model.SLT)</td>
-        <td></td>
+        @*<td>@Html.DisplayFor(model => model.SLT)</td>*@
+        <td>@String.Format("{0}", Model.SLT)</td>
     </tr>
 </table>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
+    @*<div class="form-actions no-color">
         @Html.ActionLink("Back to List", "Home")
+    </div>*@
+    <div class="btn btn-outline-primary">
+        @Html.ActionLink("Quay về", "Home")
     </div>
 }
 

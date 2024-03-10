@@ -34,7 +34,8 @@
                                     </div>
                                     <p class="text-start text-md-center">
                                     <p>
-                                        @Html.DisplayFor(modelItem => item.dthanhtien) VND
+                                        @*<span><strong>Giá: </strong>@Html.DisplayFor(modelItem => item.dthanhtien) VND</span>*@
+                                        <span><strong>Giá: </strong>@String.Format("{0:0,0}", item.dthanhtien) VND</span>
                                     </p>
                                 </div>
 
@@ -43,7 +44,7 @@
 
                         <hr class="my-4" />
                         <span> <strong>Tổng số sản phẩm:</strong> @ViewBag.Tongsoluongsanpham &emsp; &emsp;</span>
-                        <span> <strong>Tổng số sản phẩm:</strong> @ViewBag.Tongsoluong  &emsp; &emsp;</span>
+                        <span> <strong>Tổng số lượng sản phẩm:</strong> @ViewBag.Tongsoluong  &emsp; &emsp;</span>
                         <span><strong>Tổng số tiền : @String.Format("{0:0,0}", ViewBag.Tongtien) VND</strong></span>
                     </div>
                 </div>
@@ -62,33 +63,65 @@
                             @using (Html.BeginForm())
                             {
                                 @Html.ValidationSummary(true)
+
                                 <tr style="height: 40px">
                                     <td>Họ tên khách hàng: </td>
+                                    <input hidden name="TENND" value=" @nd.TENND"/>
                                     <td style="font-weight:bold"> @nd.TENND</td>
                                 </tr>
                                 <tr style="height: 40px">
                                     <td>Email: </td>
+                                    <input hidden name="MAIL" value="@nd.MAIL" />
                                     <td style="font-weight:bold">@nd.MAIL</td>
                                 </tr>
                                 <tr style="height: 40px">
                                     <td>Địa chỉ: </td>
-                                    <td style="font-weight:bold">@nd.DIACHI</td>
+                                    
+                                    <td style="font-weight:bold"><input name="DIACHI" value="" /></td>
                                 </tr>
                                 <tr style="height: 40px">
                                     <td>Điện thoại: </td>
+                                    <input hidden name="SDT" value=" @nd.SDT" />
                                     <td style="font-weight:bold">@nd.SDT</td>
                                 </tr>
                                 <tr style="height: 40px">
                                     <td>Ngày đặt: </td>
+                                    <input hidden name="NGAYDAT" value="@DateTime.Now.ToShortDateString()"/>
                                     <td style="font-weight:bold">@DateTime.Now.ToShortDateString()</td>
                                 </tr>
                                 <tr style="height: 40px">
                                     <td>Ngày giao: </td>
+                                    <input hidden name="NGAYGIAO" value="@DateTime.Now.AddDays(3).ToShortDateString()" />
                                     <td style="font-weight:bold">@DateTime.Now.AddDays(3).ToShortDateString()</td>
                                 </tr>
                                 <tr style="height: 40px">
                                     <td style="font-weight:bold">
                                     </td>
+                                </tr>
+                                <tr>
+                                    <div class="card-footer text-muted">
+                                        <h6>Phương thức thanh toán</h6>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="payment" id="exampleRadios1" value="1" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Thanh toán nơi nhận hàng.
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="payment" id="exampleRadios1" value="2" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Thanh toán qua ví VNPAY.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="payment" id="exampleRadios1" value="3" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Thanh toán qua ví MoMo.
+                                            </label>
+                                        </div>
+
+                                    </div>
                                 </tr>
                                 <tr style="height: 40px">
                                     <td></td>
@@ -99,15 +132,7 @@
                             }
                         </table>
                     </div>
-                    <div class="card-footer text-muted">
-                        <h6>Phương thức thanh toán</h6>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Thanh toán nơi nhận hàng.
-                            </label>
-                        </div>
-                    </div>
+        
                 </div>
 
             </div>

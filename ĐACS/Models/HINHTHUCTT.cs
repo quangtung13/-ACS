@@ -12,23 +12,20 @@ namespace ĐACS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DONHANG
+    public partial class HINHTHUCTT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DONHANG()
+        public HINHTHUCTT()
         {
-            this.CHITIETDONHANG = new HashSet<CHITIETDONHANG>();
+            this.HDTTHOPDONG = new HashSet<HDTTHOPDONG>();
             this.HOADON = new HashSet<HOADON>();
         }
     
-        public decimal MADH { get; set; }
-        public Nullable<System.DateTime> THOIGIANDAT { get; set; }
-        public Nullable<System.DateTime> THOIGIANGIAODUKIEN { get; set; }
-        public string TENDANGNHAP { get; set; }
+        public decimal MAHTTT { get; set; }
+        public string TENHTTT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETDONHANG> CHITIETDONHANG { get; set; }
-        public virtual NGUOIDUNG NGUOIDUNG { get; set; }
+        public virtual ICollection<HDTTHOPDONG> HDTTHOPDONG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADON { get; set; }
     }

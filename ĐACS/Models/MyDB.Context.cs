@@ -25,8 +25,9 @@ namespace ĐACS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CHITIETDONHANG> CHITIETDONHANG { get; set; }
-        public virtual DbSet<DONHANG> DONHANG { get; set; }
+        public virtual DbSet<CHITIETHOADON> CHITIETHOADON { get; set; }
+        public virtual DbSet<HDTTHOPDONG> HDTTHOPDONG { get; set; }
+        public virtual DbSet<HINHTHUCTT> HINHTHUCTT { get; set; }
         public virtual DbSet<HOADON> HOADON { get; set; }
         public virtual DbSet<HOPDONG> HOPDONG { get; set; }
         public virtual DbSet<LOAIHD> LOAIHD { get; set; }

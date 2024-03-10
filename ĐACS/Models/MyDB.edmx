@@ -5,33 +5,45 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CHITIETDONHANG">
+        <EntityType Name="CHITIETHOADON">
           <Key>
             <PropertyRef Name="MASP" />
-            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MAHD" />
           </Key>
           <Property Name="MASP" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="MADH" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MAHD" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="SOLUONG" Type="number" Precision="38" Scale="0" />
-          <Property Name="GIASP" Type="number" Precision="38" Scale="0" />
+          <Property Name="GIA" Type="number" Precision="38" Scale="0" />
         </EntityType>
-        <EntityType Name="DONHANG">
+        <EntityType Name="HDTTHOPDONG">
           <Key>
-            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MAHDTTHOPDONG" />
           </Key>
-          <Property Name="MADH" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="THOIGIANDAT" Type="date" />
-          <Property Name="THOIGIANGIAODUKIEN" Type="date" />
-          <Property Name="TENDANGNHAP" Type="varchar2" MaxLength="200" Nullable="false" />
+          <Property Name="MAHDTTHOPDONG" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MAHOPDONG" Type="varchar2" MaxLength="200" Nullable="false" />
+          <Property Name="MAHTTT" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SOTIENCOC" Type="float" Precision="126" Scale="0" />
+          <Property Name="SOTIENCONLAI" Type="float" Precision="126" Scale="0" />
+        </EntityType>
+        <EntityType Name="HINHTHUCTT">
+          <Key>
+            <PropertyRef Name="MAHTTT" />
+          </Key>
+          <Property Name="MAHTTT" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TENHTTT" Type="nvarchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
             <PropertyRef Name="MAHD" />
           </Key>
           <Property Name="MAHD" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MADH" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="NGAYLAPHD" Type="date" />
+          <Property Name="THOIGIANDAT" Type="date" />
+          <Property Name="THOIGIANGIAODUKIEN" Type="date" />
           <Property Name="THANHTIEN" Type="float" Precision="126" Scale="0" />
+          <Property Name="DIACHI" Type="nvarchar2" MaxLength="250" />
+          <Property Name="SDTNHAN" Type="varchar2" MaxLength="10" />
+          <Property Name="TENDANGNHAP" Type="varchar2" MaxLength="200" Nullable="false" />
+          <Property Name="MAHTTT" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="HOPDONG">
           <Key>
@@ -40,7 +52,7 @@
           <Property Name="MAHOPDONG" Type="varchar2" MaxLength="200" Nullable="false" />
           <Property Name="THOIGIANLAP" Type="date" />
           <Property Name="ND" Type="nvarchar2" MaxLength="200" />
-          <Property Name="CHIPHIDULOAISP" Type="nvarchar2" MaxLength="200" />
+          <Property Name="CHIPHIDUPHONG" Type="nvarchar2" MaxLength="200" />
           <Property Name="TENDANGNHAP" Type="varchar2" MaxLength="200" Nullable="false" />
           <Property Name="TENTAIKHOAN" Type="varchar2" MaxLength="30" Nullable="false" />
           <Property Name="MALOAIHD" Type="number" Precision="38" Scale="0" Nullable="false" />
@@ -49,14 +61,14 @@
           <Key>
             <PropertyRef Name="MALOAIHD" />
           </Key>
-          <Property Name="MALOAIHD" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MALOAIHD" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="TENLOAIHD" Type="nvarchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="LOAISP">
           <Key>
             <PropertyRef Name="MALOAI" />
           </Key>
-          <Property Name="MALOAI" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MALOAI" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="TENLOAI" Type="nvarchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="NGUOIDUNG">
@@ -68,14 +80,14 @@
           <Property Name="TENND" Type="nvarchar2" MaxLength="200" />
           <Property Name="NGAYSINH" Type="date" />
           <Property Name="DIACHI" Type="nvarchar2" MaxLength="300" />
-          <Property Name="SDT" Type="char" MaxLength="11" />
+          <Property Name="SDT" Type="varchar2" MaxLength="11" />
           <Property Name="MAIL" Type="varchar2" MaxLength="100" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
             <PropertyRef Name="TENTAIKHOAN" />
           </Key>
-          <Property Name="TENTAIKHOAN" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="TENTAIKHOAN" Type="varchar2" MaxLength="200" Nullable="false" />
           <Property Name="PASS" Type="varchar2" MaxLength="30" />
           <Property Name="TENNHANVIEN" Type="nvarchar2" MaxLength="50" />
           <Property Name="NS" Type="date" />
@@ -100,54 +112,78 @@
           <Property Name="GIA" Type="number" Precision="38" Scale="0" />
           <Property Name="SLT" Type="number" Precision="38" Scale="0" />
           <Property Name="MOTA" Type="nvarchar2" MaxLength="200" />
-          <Property Name="HINH" Type="char" MaxLength="100" />
+          <Property Name="HINH" Type="varchar2" MaxLength="100" />
           <Property Name="MALOAI" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="CHITIETDONHANG_FK">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
-          <End Role="CHITIETDONHANG" Type="Self.CHITIETDONHANG" Multiplicity="*" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SANPHAM">
               <PropertyRef Name="MASP" />
             </Principal>
-            <Dependent Role="CHITIETDONHANG">
+            <Dependent Role="CHITIETHOADON">
               <PropertyRef Name="MASP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="CHITIETDONHANG1_FK">
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
-          <End Role="CHITIETDONHANG" Type="Self.CHITIETDONHANG" Multiplicity="*" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DONHANG">
-              <PropertyRef Name="MADH" />
+            <Principal Role="HOADON">
+              <PropertyRef Name="MAHD" />
             </Principal>
-            <Dependent Role="CHITIETDONHANG">
-              <PropertyRef Name="MADH" />
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MAHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="DONHANG_FK">
           <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1" />
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NGUOIDUNG">
               <PropertyRef Name="TENDANGNHAP" />
             </Principal>
-            <Dependent Role="DONHANG">
+            <Dependent Role="HOADON">
               <PropertyRef Name="TENDANGNHAP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="HOADON1">
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
+        <Association Name="DONHANG_FK1">
+          <End Role="HINHTHUCTT" Type="Self.HINHTHUCTT" Multiplicity="1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DONHANG">
-              <PropertyRef Name="MADH" />
+            <Principal Role="HINHTHUCTT">
+              <PropertyRef Name="MAHTTT" />
             </Principal>
             <Dependent Role="HOADON">
-              <PropertyRef Name="MADH" />
+              <PropertyRef Name="MAHTTT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HDTTHOPDONG_FK">
+          <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="1" />
+          <End Role="HDTTHOPDONG" Type="Self.HDTTHOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOPDONG">
+              <PropertyRef Name="MAHOPDONG" />
+            </Principal>
+            <Dependent Role="HDTTHOPDONG">
+              <PropertyRef Name="MAHOPDONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HDTTHOPDONG1_FK">
+          <End Role="HINHTHUCTT" Type="Self.HINHTHUCTT" Multiplicity="1" />
+          <End Role="HDTTHOPDONG" Type="Self.HDTTHOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HINHTHUCTT">
+              <PropertyRef Name="MAHTTT" />
+            </Principal>
+            <Dependent Role="HDTTHOPDONG">
+              <PropertyRef Name="MAHTTT" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -212,8 +248,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="CHITIETDONHANG" EntityType="Self.CHITIETDONHANG" Schema="SYSTEM" store:Type="Tables" />
-          <EntitySet Name="DONHANG" EntityType="Self.DONHANG" Schema="SYSTEM" store:Type="Tables" />
+          <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" Schema="SYSTEM" store:Type="Tables" />
+          <EntitySet Name="HDTTHOPDONG" EntityType="Self.HDTTHOPDONG" Schema="SYSTEM" store:Type="Tables" />
+          <EntitySet Name="HINHTHUCTT" EntityType="Self.HINHTHUCTT" Schema="SYSTEM" store:Type="Tables" />
           <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="SYSTEM" store:Type="Tables" />
           <EntitySet Name="HOPDONG" EntityType="Self.HOPDONG" Schema="SYSTEM" store:Type="Tables" />
           <EntitySet Name="LOAIHD" EntityType="Self.LOAIHD" Schema="SYSTEM" store:Type="Tables" />
@@ -224,19 +261,27 @@
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="SYSTEM" store:Type="Tables" />
           <AssociationSet Name="CHITIETDONHANG_FK" Association="Self.CHITIETDONHANG_FK">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
-            <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANG" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
           </AssociationSet>
           <AssociationSet Name="CHITIETDONHANG1_FK" Association="Self.CHITIETDONHANG1_FK">
-            <End Role="DONHANG" EntitySet="DONHANG" />
-            <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANG" />
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
           </AssociationSet>
           <AssociationSet Name="DONHANG_FK" Association="Self.DONHANG_FK">
             <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
-            <End Role="DONHANG" EntitySet="DONHANG" />
-          </AssociationSet>
-          <AssociationSet Name="HOADON1" Association="Self.HOADON1">
-            <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="DONHANG_FK1" Association="Self.DONHANG_FK1">
+            <End Role="HINHTHUCTT" EntitySet="HINHTHUCTT" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="HDTTHOPDONG_FK" Association="Self.HDTTHOPDONG_FK">
+            <End Role="HOPDONG" EntitySet="HOPDONG" />
+            <End Role="HDTTHOPDONG" EntitySet="HDTTHOPDONG" />
+          </AssociationSet>
+          <AssociationSet Name="HDTTHOPDONG1_FK" Association="Self.HDTTHOPDONG1_FK">
+            <End Role="HINHTHUCTT" EntitySet="HINHTHUCTT" />
+            <End Role="HDTTHOPDONG" EntitySet="HDTTHOPDONG" />
           </AssociationSet>
           <AssociationSet Name="HOPDONG_FK" Association="Self.HOPDONG_FK">
             <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
@@ -264,39 +309,54 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CHITIETDONHANG">
+        <EntityType Name="CHITIETHOADON">
           <Key>
             <PropertyRef Name="MASP" />
-            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MAHD" />
           </Key>
           <Property Name="MASP" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="MADH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MAHD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="SOLUONG" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="GIASP" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.CHITIETDONHANG_FK" FromRole="CHITIETDONHANG" ToRole="SANPHAM" />
-          <NavigationProperty Name="DONHANG" Relationship="Self.CHITIETDONHANG1_FK" FromRole="CHITIETDONHANG" ToRole="DONHANG" />
+          <Property Name="GIA" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.CHITIETDONHANG_FK" FromRole="CHITIETHOADON" ToRole="SANPHAM" />
+          <NavigationProperty Name="HOADON" Relationship="Self.CHITIETDONHANG1_FK" FromRole="CHITIETHOADON" ToRole="HOADON" />
         </EntityType>
-        <EntityType Name="DONHANG">
+        <EntityType Name="HDTTHOPDONG">
           <Key>
-            <PropertyRef Name="MADH" />
+            <PropertyRef Name="MAHDTTHOPDONG" />
           </Key>
-          <Property Name="MADH" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="THOIGIANDAT" Type="DateTime" />
-          <Property Name="THOIGIANGIAODUKIEN" Type="DateTime" />
-          <Property Name="TENDANGNHAP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CHITIETDONHANG" Relationship="Self.CHITIETDONHANG1_FK" FromRole="DONHANG" ToRole="CHITIETDONHANG" />
-          <NavigationProperty Name="NGUOIDUNG" Relationship="Self.DONHANG_FK" FromRole="DONHANG" ToRole="NGUOIDUNG" />
-          <NavigationProperty Name="HOADON" Relationship="Self.HOADON1" FromRole="DONHANG" ToRole="HOADON" />
+          <Property Name="MAHDTTHOPDONG" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MAHOPDONG" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAHTTT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SOTIENCOC" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SOTIENCONLAI" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="HOPDONG" Relationship="Self.HDTTHOPDONG_FK" FromRole="HDTTHOPDONG" ToRole="HOPDONG" />
+          <NavigationProperty Name="HINHTHUCTT" Relationship="Self.HDTTHOPDONG1_FK" FromRole="HDTTHOPDONG" ToRole="HINHTHUCTT" />
+        </EntityType>
+        <EntityType Name="HINHTHUCTT">
+          <Key>
+            <PropertyRef Name="MAHTTT" />
+          </Key>
+          <Property Name="MAHTTT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TENHTTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HDTTHOPDONG" Relationship="Self.HDTTHOPDONG1_FK" FromRole="HINHTHUCTT" ToRole="HDTTHOPDONG" />
+          <NavigationProperty Name="HOADON" Relationship="Self.DONHANG_FK1" FromRole="HINHTHUCTT" ToRole="HOADON" />
         </EntityType>
         <EntityType Name="HOADON">
           <Key>
             <PropertyRef Name="MAHD" />
           </Key>
           <Property Name="MAHD" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MADH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="NGAYLAPHD" Type="DateTime" />
+          <Property Name="THOIGIANDAT" Type="DateTime" />
+          <Property Name="THOIGIANGIAODUKIEN" Type="DateTime" />
           <Property Name="THANHTIEN" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="DONHANG" Relationship="Self.HOADON1" FromRole="HOADON" ToRole="DONHANG" />
+          <Property Name="DIACHI" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SDTNHAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TENDANGNHAP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAHTTT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CHITIETHOADON" Relationship="Self.CHITIETDONHANG1_FK" FromRole="HOADON" ToRole="CHITIETHOADON" />
+          <NavigationProperty Name="HINHTHUCTT" Relationship="Self.DONHANG_FK1" FromRole="HOADON" ToRole="HINHTHUCTT" />
+          <NavigationProperty Name="NGUOIDUNG" Relationship="Self.DONHANG_FK" FromRole="HOADON" ToRole="NGUOIDUNG" />
         </EntityType>
         <EntityType Name="HOPDONG">
           <Key>
@@ -305,10 +365,11 @@
           <Property Name="MAHOPDONG" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="THOIGIANLAP" Type="DateTime" />
           <Property Name="ND" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CHIPHIDULOAISP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CHIPHIDUPHONG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="TENDANGNHAP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TENTAIKHOAN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MALOAIHD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="HDTTHOPDONG" Relationship="Self.HDTTHOPDONG_FK" FromRole="HOPDONG" ToRole="HDTTHOPDONG" />
           <NavigationProperty Name="NGUOIDUNG" Relationship="Self.HOPDONG_FK" FromRole="HOPDONG" ToRole="NGUOIDUNG" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.HOPDONG1_FK" FromRole="HOPDONG" ToRole="NHANVIEN" />
           <NavigationProperty Name="LOAIHD" Relationship="Self.HOPDONG2_FK" FromRole="HOPDONG" ToRole="LOAIHD" />
@@ -317,7 +378,7 @@
           <Key>
             <PropertyRef Name="MALOAIHD" />
           </Key>
-          <Property Name="MALOAIHD" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MALOAIHD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="TENLOAIHD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HOPDONG" Relationship="Self.HOPDONG2_FK" FromRole="LOAIHD" ToRole="HOPDONG" />
         </EntityType>
@@ -325,7 +386,7 @@
           <Key>
             <PropertyRef Name="MALOAI" />
           </Key>
-          <Property Name="MALOAI" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MALOAI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="TENLOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.SANPHAM_FK" FromRole="LOAISP" ToRole="SANPHAM" />
         </EntityType>
@@ -338,16 +399,16 @@
           <Property Name="TENND" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="NGAYSINH" Type="DateTime" />
           <Property Name="DIACHI" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DONHANG" Relationship="Self.DONHANG_FK" FromRole="NGUOIDUNG" ToRole="DONHANG" />
+          <NavigationProperty Name="HOADON" Relationship="Self.DONHANG_FK" FromRole="NGUOIDUNG" ToRole="HOADON" />
           <NavigationProperty Name="HOPDONG" Relationship="Self.HOPDONG_FK" FromRole="NGUOIDUNG" ToRole="HOPDONG" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
             <PropertyRef Name="TENTAIKHOAN" />
           </Key>
-          <Property Name="TENTAIKHOAN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENTAIKHOAN" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PASS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="TENNHANVIEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NS" Type="DateTime" />
@@ -375,56 +436,80 @@
           <Property Name="GIA" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="SLT" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="MOTA" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="HINH" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="HINH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MALOAI" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="CHITIETDONHANG" Relationship="Self.CHITIETDONHANG_FK" FromRole="SANPHAM" ToRole="CHITIETDONHANG" />
+          <NavigationProperty Name="CHITIETHOADON" Relationship="Self.CHITIETDONHANG_FK" FromRole="SANPHAM" ToRole="CHITIETHOADON" />
           <NavigationProperty Name="LOAISP" Relationship="Self.SANPHAM_FK" FromRole="SANPHAM" ToRole="LOAISP" />
         </EntityType>
         <Association Name="CHITIETDONHANG_FK">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
-          <End Role="CHITIETDONHANG" Type="Self.CHITIETDONHANG" Multiplicity="*" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SANPHAM">
               <PropertyRef Name="MASP" />
             </Principal>
-            <Dependent Role="CHITIETDONHANG">
+            <Dependent Role="CHITIETHOADON">
               <PropertyRef Name="MASP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="CHITIETDONHANG1_FK">
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
-          <End Role="CHITIETDONHANG" Type="Self.CHITIETDONHANG" Multiplicity="*" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DONHANG">
-              <PropertyRef Name="MADH" />
+            <Principal Role="HOADON">
+              <PropertyRef Name="MAHD" />
             </Principal>
-            <Dependent Role="CHITIETDONHANG">
-              <PropertyRef Name="MADH" />
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MAHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HDTTHOPDONG_FK">
+          <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="1" />
+          <End Role="HDTTHOPDONG" Type="Self.HDTTHOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOPDONG">
+              <PropertyRef Name="MAHOPDONG" />
+            </Principal>
+            <Dependent Role="HDTTHOPDONG">
+              <PropertyRef Name="MAHOPDONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HDTTHOPDONG1_FK">
+          <End Role="HINHTHUCTT" Type="Self.HINHTHUCTT" Multiplicity="1" />
+          <End Role="HDTTHOPDONG" Type="Self.HDTTHOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HINHTHUCTT">
+              <PropertyRef Name="MAHTTT" />
+            </Principal>
+            <Dependent Role="HDTTHOPDONG">
+              <PropertyRef Name="MAHTTT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DONHANG_FK1">
+          <End Role="HINHTHUCTT" Type="Self.HINHTHUCTT" Multiplicity="1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HINHTHUCTT">
+              <PropertyRef Name="MAHTTT" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAHTTT" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="DONHANG_FK">
           <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="1" />
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NGUOIDUNG">
               <PropertyRef Name="TENDANGNHAP" />
             </Principal>
-            <Dependent Role="DONHANG">
-              <PropertyRef Name="TENDANGNHAP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="HOADON1">
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
-          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DONHANG">
-              <PropertyRef Name="MADH" />
-            </Principal>
             <Dependent Role="HOADON">
-              <PropertyRef Name="MADH" />
+              <PropertyRef Name="TENDANGNHAP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -489,8 +574,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CHITIETDONHANG" EntityType="Self.CHITIETDONHANG" />
-          <EntitySet Name="DONHANG" EntityType="Self.DONHANG" />
+          <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" />
+          <EntitySet Name="HDTTHOPDONG" EntityType="Self.HDTTHOPDONG" />
+          <EntitySet Name="HINHTHUCTT" EntityType="Self.HINHTHUCTT" />
           <EntitySet Name="HOADON" EntityType="Self.HOADON" />
           <EntitySet Name="HOPDONG" EntityType="Self.HOPDONG" />
           <EntitySet Name="LOAIHD" EntityType="Self.LOAIHD" />
@@ -501,18 +587,26 @@
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" />
           <AssociationSet Name="CHITIETDONHANG_FK" Association="Self.CHITIETDONHANG_FK">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
-            <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANG" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
           </AssociationSet>
           <AssociationSet Name="CHITIETDONHANG1_FK" Association="Self.CHITIETDONHANG1_FK">
-            <End Role="DONHANG" EntitySet="DONHANG" />
-            <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANG" />
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+          </AssociationSet>
+          <AssociationSet Name="HDTTHOPDONG_FK" Association="Self.HDTTHOPDONG_FK">
+            <End Role="HOPDONG" EntitySet="HOPDONG" />
+            <End Role="HDTTHOPDONG" EntitySet="HDTTHOPDONG" />
+          </AssociationSet>
+          <AssociationSet Name="HDTTHOPDONG1_FK" Association="Self.HDTTHOPDONG1_FK">
+            <End Role="HINHTHUCTT" EntitySet="HINHTHUCTT" />
+            <End Role="HDTTHOPDONG" EntitySet="HDTTHOPDONG" />
+          </AssociationSet>
+          <AssociationSet Name="DONHANG_FK1" Association="Self.DONHANG_FK1">
+            <End Role="HINHTHUCTT" EntitySet="HINHTHUCTT" />
+            <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
           <AssociationSet Name="DONHANG_FK" Association="Self.DONHANG_FK">
             <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
-            <End Role="DONHANG" EntitySet="DONHANG" />
-          </AssociationSet>
-          <AssociationSet Name="HOADON1" Association="Self.HOADON1">
-            <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
           <AssociationSet Name="HOPDONG_FK" Association="Self.HOPDONG_FK">
@@ -542,23 +636,32 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DBContext">
-          <EntitySetMapping Name="CHITIETDONHANG">
-            <EntityTypeMapping TypeName="Model.CHITIETDONHANG">
-              <MappingFragment StoreEntitySet="CHITIETDONHANG">
+          <EntitySetMapping Name="CHITIETHOADON">
+            <EntityTypeMapping TypeName="Model.CHITIETHOADON">
+              <MappingFragment StoreEntitySet="CHITIETHOADON">
                 <ScalarProperty Name="MASP" ColumnName="MASP" />
-                <ScalarProperty Name="MADH" ColumnName="MADH" />
+                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-                <ScalarProperty Name="GIASP" ColumnName="GIASP" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DONHANG">
-            <EntityTypeMapping TypeName="Model.DONHANG">
-              <MappingFragment StoreEntitySet="DONHANG">
-                <ScalarProperty Name="MADH" ColumnName="MADH" />
-                <ScalarProperty Name="THOIGIANDAT" ColumnName="THOIGIANDAT" />
-                <ScalarProperty Name="THOIGIANGIAODUKIEN" ColumnName="THOIGIANGIAODUKIEN" />
-                <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+          <EntitySetMapping Name="HDTTHOPDONG">
+            <EntityTypeMapping TypeName="Model.HDTTHOPDONG">
+              <MappingFragment StoreEntitySet="HDTTHOPDONG">
+                <ScalarProperty Name="MAHDTTHOPDONG" ColumnName="MAHDTTHOPDONG" />
+                <ScalarProperty Name="MAHOPDONG" ColumnName="MAHOPDONG" />
+                <ScalarProperty Name="MAHTTT" ColumnName="MAHTTT" />
+                <ScalarProperty Name="SOTIENCOC" ColumnName="SOTIENCOC" />
+                <ScalarProperty Name="SOTIENCONLAI" ColumnName="SOTIENCONLAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HINHTHUCTT">
+            <EntityTypeMapping TypeName="Model.HINHTHUCTT">
+              <MappingFragment StoreEntitySet="HINHTHUCTT">
+                <ScalarProperty Name="MAHTTT" ColumnName="MAHTTT" />
+                <ScalarProperty Name="TENHTTT" ColumnName="TENHTTT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -566,9 +669,13 @@
             <EntityTypeMapping TypeName="Model.HOADON">
               <MappingFragment StoreEntitySet="HOADON">
                 <ScalarProperty Name="MAHD" ColumnName="MAHD" />
-                <ScalarProperty Name="MADH" ColumnName="MADH" />
-                <ScalarProperty Name="NGAYLAPHD" ColumnName="NGAYLAPHD" />
+                <ScalarProperty Name="THOIGIANDAT" ColumnName="THOIGIANDAT" />
+                <ScalarProperty Name="THOIGIANGIAODUKIEN" ColumnName="THOIGIANGIAODUKIEN" />
                 <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="SDTNHAN" ColumnName="SDTNHAN" />
+                <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+                <ScalarProperty Name="MAHTTT" ColumnName="MAHTTT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -578,7 +685,7 @@
                 <ScalarProperty Name="MAHOPDONG" ColumnName="MAHOPDONG" />
                 <ScalarProperty Name="THOIGIANLAP" ColumnName="THOIGIANLAP" />
                 <ScalarProperty Name="ND" ColumnName="ND" />
-                <ScalarProperty Name="CHIPHIDULOAISP" ColumnName="CHIPHIDULOAISP" />
+                <ScalarProperty Name="CHIPHIDUPHONG" ColumnName="CHIPHIDUPHONG" />
                 <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
                 <ScalarProperty Name="TENTAIKHOAN" ColumnName="TENTAIKHOAN" />
                 <ScalarProperty Name="MALOAIHD" ColumnName="MALOAIHD" />

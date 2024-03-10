@@ -14,11 +14,24 @@ namespace ĐACS.Models
     
     public partial class HOADON
     {
-        public decimal MAHD { get; set; }
-        public decimal MADH { get; set; }
-        public Nullable<System.DateTime> NGAYLAPHD { get; set; }
-        public Nullable<decimal> THANHTIEN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HOADON()
+        {
+            this.CHITIETHOADON = new HashSet<CHITIETHOADON>();
+        }
     
-        public virtual DONHANG DONHANG { get; set; }
+        public decimal MAHD { get; set; }
+        public Nullable<System.DateTime> THOIGIANDAT { get; set; }
+        public Nullable<System.DateTime> THOIGIANGIAODUKIEN { get; set; }
+        public Nullable<decimal> THANHTIEN { get; set; }
+        public string DIACHI { get; set; }
+        public string SDTNHAN { get; set; }
+        public string TENDANGNHAP { get; set; }
+        public decimal MAHTTT { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADON { get; set; }
+        public virtual HINHTHUCTT HINHTHUCTT { get; set; }
+        public virtual NGUOIDUNG NGUOIDUNG { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace ĐACS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NGUOIDUNG()
         {
-            this.DONHANG = new HashSet<DONHANG>();
+            this.HOADON = new HashSet<HOADON>();
             this.HOPDONG = new HashSet<HOPDONG>();
         }
     
@@ -30,7 +30,7 @@ namespace ĐACS.Models
         public string MAIL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONHANG> DONHANG { get; set; }
+        public virtual ICollection<HOADON> HOADON { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOPDONG> HOPDONG { get; set; }
     }

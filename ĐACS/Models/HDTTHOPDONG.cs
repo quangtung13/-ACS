@@ -12,14 +12,15 @@ namespace ĐACS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CHITIETDONHANG
+    public partial class HDTTHOPDONG
     {
-        public decimal MASP { get; set; }
-        public decimal MADH { get; set; }
-        public Nullable<decimal> SOLUONG { get; set; }
-        public Nullable<decimal> GIASP { get; set; }
+        public decimal MAHDTTHOPDONG { get; set; }
+        public string MAHOPDONG { get; set; }
+        public decimal MAHTTT { get; set; }
+        public Nullable<decimal> SOTIENCOC { get; set; }
+        public Nullable<decimal> SOTIENCONLAI { get; set; }
     
-        public virtual SANPHAM SANPHAM { get; set; }
-        public virtual DONHANG DONHANG { get; set; }
+        public virtual HOPDONG HOPDONG { get; set; }
+        public virtual HINHTHUCTT HINHTHUCTT { get; set; }
     }
 }

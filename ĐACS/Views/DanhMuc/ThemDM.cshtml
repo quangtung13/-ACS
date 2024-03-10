@@ -18,7 +18,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.TENLOAI, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TENLOAI, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.TENLOAI, new { htmlAttributes = new { @class = "form-control", @name = "TENLOAI" } })
             @Html.ValidationMessageFor(model => model.TENLOAI, "", new { @class = "text-danger" })
         </div>
     </div>

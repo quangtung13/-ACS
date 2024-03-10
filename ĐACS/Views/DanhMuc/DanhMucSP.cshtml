@@ -34,7 +34,8 @@
                         <a href="" class="text-reset">
                             <p><strong>SL: </strong>@item.SLT</p>
                         </a>
-                        <h6 class="mb-3"> <strong>Giá: </strong>@item.GIA</h6>
+                        @*<h6 class="mb-3"> <strong>Giá: </strong>@item.GIA</h6>*@
+                        <h6 class="mb-3"> <strong>Giá: </strong>@String.Format("{0:0,0}", item.GIA) VND</h6>
                     </div>
                     <div class="d-flex justify-content-center align-items-center pb-2 mb-1">
                         <a class="btn btn-primary" onclick="addToCart(@item.MASP)">Đặt Mua</a>
@@ -62,3 +63,9 @@
             });
     }
 </script>
+
+<style>
+    .card {
+        height: 550px; /* Thay đổi giá trị tùy thuộc vào chiều cao mong muốn */
+    }
+</style>

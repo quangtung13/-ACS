@@ -1,4 +1,4 @@
-﻿@model ĐACS.Models.CHITIETDONHANG
+﻿@model IEnumerable < ĐACS.Models.CHITIETHOADON>
 
 
 @{
@@ -6,8 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>XemChiTietDonHang</h2>
-<table class="table">
+<h2 class="text-center">Xem chi tiết đơn hàng</h2>
+<table class="table table-striped table-hover">
     <tr class="text-center">
         <th> Mã Đơn Hàng</th>
         <th> Mã Sản Phẩm</th>
@@ -15,11 +15,38 @@
         <th> Tổng tiền đơn</th>
 
     </tr>
+        @foreach (var modal in Model)
+        {
     <tr class="text-center">
-        <td>@Html.DisplayFor(model => model.DONHANG.MADH)</td>
-        <td>@Html.DisplayFor(model => model.MASP)</td>
-        <td>@Html.DisplayFor(model => model.SOLUONG)</td>
-        <td>@Html.DisplayFor(model => model.GIASP) VND</td>
+
+        <td>@modal.MAHD</td>
+        <td>@modal.MASP</td>
+        <td>@modal.SOLUONG</td>
+        <td>
+            @String.Format("{0:0,0}", modal.GIA * modal.SOLUONG)  VND
+        </td>
     </tr>
+        }
+
 </table>
- @Html.ActionLink("Huỷ", "HuyDonHang", "DonHang", new { area = "" }, new { @class = "btn btn-danger" })
+
+@{ 
+    var id = ViewData["id"];
+}
+<div class="d-flex pb-2 mb-1">
+    <span onclick="removeDonHang(@id)" class="btn btn-danger">Huỷ đơn hàng này</span>
+    <div class="btn btn-outline-primary">
+        @Html.ActionLink("Quay về", "XemDonHang")
+    </div>
+</div>
+
+<script>
+    function removeDonHang(id) {
+        const data = confirm("Bạn có muốn xoá đơn hàng này không?");
+        if (data) {
+            fetch("/DonHang/HuyDonHang/" + id).then((res) => {
+                location.replace("/DonHang/XemDonHang")
+            })
+        }
+    }
+</script>

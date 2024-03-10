@@ -1,5 +1,8 @@
 ﻿@using ĐACS.Models
+@{
 
+        ViewData["ApiKey"] = "AIzaSyCnXud_vncQMC9n11qcU55qZf5hRIJb5zQ";
+    }
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,19 +19,21 @@
           rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
           rel="stylesheet" />
+
 </head>
 
-<body onload="getGioHangPartial();">
+<body onload="getGioHangPartial(); onload=startTimer()">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary ">
         <div class="container">
             @*@Html.ActionLink("Trang chủ", "Home", "Store", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>*@
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>*@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Trang chủ", "Home", "Store", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("Liên hệ", "SendMail", "SendMail", new { area = "" }, new { @class = "navbar-brand" })</li>
 
                     @using (Html.BeginForm("Search", "Store"))
                     {
@@ -102,6 +107,12 @@
         @RenderBody()
         <hr />
     </div>
+
+    <style>
+        body {
+            padding: 0;
+        }
+    </style>
 
 
 
@@ -188,11 +199,43 @@
             © 2023 Copyright:
             <a class="text-reset fw-bold" href="#">HOÀNG - TÙNG</a>
         </div>
+
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @RenderSection("upload", required: false)
+
+    
+@*<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=@ViewData["ApiKey"]&callback=initMap">
+</script>
+    <div id="map" style="width:100%;height:400px;"></div>
+    <script>
+        function initMap() {
+            var myLatLng = {
+                lat: 10.848048873625425, lng: 106.795220972858
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: myLatLng
+            });
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
+            });
+        }
+
+    </script>*@
+
+    @section scripts {
+    @*10.855289771641836, 106.78533578008104*@
+
+
+
+}
 </body>
 </html>
+

@@ -15,14 +15,30 @@ namespace ĐACS.Controllers
     {
         DBContext data = new DBContext();
         // GET: Store
-        public ActionResult Home(int? page)
+        public ActionResult Home(int? page, bool? lowPrHight)
         {
             if (page == null) page = 1;
-            var item = (from hh in data.SANPHAM select hh).Where(m => m.SLT > 0).OrderBy(m => m.MASP); ;
-            int pageSize = 4;
+            int pageSize = 8;
             int pageNum = page ?? 1;
-            return View(item.ToPagedList(pageNum, pageSize));
+
+            if(lowPrHight == null)
+            {
+                var listOrder = (from hh in data.SANPHAM select hh).Where(m => m.SLT > 0).OrderBy(m => m.MASP).ToList();
+                return View("Home", listOrder.ToPagedList(pageNum, pageSize));
+            }
+            if (lowPrHight == false)
+            {
+                var listOrder = (from hh in data.SANPHAM select hh).Where(m => m.SLT > 0).OrderBy(m => m.GIA).ToList();
+                return View("Home", listOrder.ToPagedList(pageNum, pageSize));
+            }
+            else
+            {
+                var listOrder = (from hh in data.SANPHAM select hh).Where(m => m.SLT > 0).OrderByDescending(m => m.GIA).ToList();
+
+                return View("Home", listOrder.ToPagedList(pageNum, pageSize));
+            }
         }
+
         public ActionResult Search(int? page, string search)
         {
             ViewBag.Keyword = search;

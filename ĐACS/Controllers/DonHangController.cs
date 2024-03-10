@@ -15,21 +15,26 @@ namespace ĐACS.Controllers
 
         public ActionResult XemDonHang(int? id)
         {
-            var donhang = (from dh in data.DONHANG select dh);
+
+            var donhang = (from dh in data.HOADON select dh).OrderBy(m => m.MAHD).ToList();
             return View(donhang);
         }
-        public ActionResult XemChiTietDonHang(int id)
-        {
-            var ctdonhang = (from dh in data.CHITIETDONHANG select dh).Where(m => m.MADH == id).First();
+        public ActionResult XemChiTietDonHang(int id) { 
+            var ctdonhang = (from dh in data.CHITIETHOADON select dh).Where(m => m.MAHD == id).ToList();
+            ViewData["id"] = id;
             return View(ctdonhang);
         }
-        //public ActionResult HuyDonHang(string id, FormCollection collection)
-        //{
-        //    var D_ctdh = data.CHITIETHOADON.Where(m => m.MAHD == id).First();
-        //    data.CHITIETHOADON.Remove(D_ctdh);
-        //    data.SaveChanges();
-        //    return RedirectToAction("Index");
-
-        //}
+        public ActionResult HuyDonHang(decimal id)
+        {
+           var D_ctdh = data.CHITIETHOADON.Where(m => m.MAHD == id).ToList();
+            foreach(var ctdh in D_ctdh)
+            {
+                data.CHITIETHOADON.Remove(ctdh);
+            }
+            var hd = data.HOADON.Where(h => h.MAHD == id).First();
+            data.HOADON.Remove(hd);
+            data.SaveChanges();
+           return RedirectToAction("XemDonHang");
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace ĐACS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SANPHAM()
         {
-            this.CHITIETDONHANG = new HashSet<CHITIETDONHANG>();
+            this.CHITIETHOADON = new HashSet<CHITIETHOADON>();
         }
     
         public decimal MASP { get; set; }
@@ -29,7 +29,7 @@ namespace ĐACS.Models
         public decimal MALOAI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETDONHANG> CHITIETDONHANG { get; set; }
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADON { get; set; }
         public virtual LOAISP LOAISP { get; set; }
     }
 }

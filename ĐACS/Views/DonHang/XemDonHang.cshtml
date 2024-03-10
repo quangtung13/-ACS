@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ĐACS.Models.DONHANG>
+﻿@model IEnumerable<ĐACS.Models.HOADON>
 
 @{
     ViewBag.Title = "XemDonHang";
@@ -13,7 +13,7 @@
     </tr>
 </table>
 <h2 class="text-center">Xem đơn hàng</h2>
-<table class="table">
+<table class="table table-striped table-hover">
     <tr class="text-center">
         <th> Mã Đơn Hàng</th>
         <th> Ngày đặt hàng</th>
@@ -25,13 +25,13 @@
     {
         <tr class="text-center">
             @*<td>@Html.DisplayFor(modelItem => item.MADH)</td>*@
-            <td>@String.Format("{0}", item.MADH)</td>
+            <td>@String.Format("{0}", item.MAHD)</td>
             <td>@Html.DisplayFor(modelItem => item.THOIGIANDAT)</td>
             <td>@Html.DisplayFor(modelItem => item.THOIGIANGIAODUKIEN)</td>
             <td>@Html.DisplayFor(modelItem => item.TENDANGNHAP)</td>
             <td>
                 @* @Html.ActionLink("Huỷ", "HuyDonHang", "DonHang", new { id = item.madon }, new { @class = "btn btn-danger" })*@
-                @Html.ActionLink("Chi Tiết", "XemChiTietDonHang", "DonHang", new { id = item.MADH }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Chi Tiết", "XemChiTietDonHang", "DonHang", new { id = item.MAHD }, new { @class = "btn btn-info" })
             </td>
         </tr>
     }

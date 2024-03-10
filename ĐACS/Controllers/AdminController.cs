@@ -33,7 +33,6 @@ namespace ĐACS.Controllers
         {
 
             var E_tensp = collection["TENSP"];
-
             var E_giaban = Convert.ToDecimal(collection["GIA"]);
             var E_mota = collection["MOTA"];
             var E_hinh = collection["HINH"];

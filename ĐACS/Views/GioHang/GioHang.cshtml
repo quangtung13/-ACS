@@ -55,9 +55,11 @@
                                     <!-- Price -->
                                     <p class="text-start text-md-center">
                                     <p>
-                                        @Html.DisplayFor(modelItem => item.dthanhtien) VND
+                                        @*<span><strong>Giá: </strong>@Html.DisplayFor(modelItem => item.dthanhtien) VND</span>*@
+                                        <span><strong>Giá: </strong>@String.Format("{0:0,0}", item.dthanhtien) VND</span>
                                     </p>
                                     </p>
+
                                     <!-- Price -->
                                 </div>
                             </div>

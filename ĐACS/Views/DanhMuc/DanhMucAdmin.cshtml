@@ -8,7 +8,7 @@
 <table class="table">
     <tr class="text-center">
         <th>@Html.ActionLink("Sản phẩm", "Index", "Admin", new { area = "" }, new { @class = "nav-link" }) </th>
-        <th>@Html.ActionLink("Sản phẩm", "DanhMucAdmin", "DanhMuc", new { area = "" }, new { @class = "nav-link" })</th>
+        <th>@Html.ActionLink("Phòng", "DanhMucAdmin", "DanhMuc", new { area = "" }, new { @class = "nav-link" })</th>
         <th>@Html.ActionLink("Đơn Hàng", "XemDonHang", "DonHang", new { area = "" }, new { @class = "nav-link" })</th>
 
     </tr>
@@ -17,10 +17,11 @@
 
 
 
-<table class="table">
+<table class="table table-striped table-hover">
     <tr class="text-center">
         <th> Mã loại sản phẩm </th>
         <th> Tên loại sản phẩm</th>
+
     </tr>
     @foreach (var item in Model)
     {
